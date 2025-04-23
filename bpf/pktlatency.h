@@ -17,23 +17,24 @@ _Pragma("GCC diagnostic ignored \"-Wint-conversion\"")
 // #include <linux/in6.h> 
 // #include <linux/socket.h>
 
+// SKB解析状态机
 enum step_t {
   start = 0,
-  SSL_OUT,
-  SYSCALL_OUT,
-  TCP_OUT,
-  IP_OUT,
-  QDISC_OUT,
-  DEV_OUT,
-  NIC_OUT,
-  NIC_IN,
-  DEV_IN,
-  IP_IN,
-  TCP_IN,
-  USER_COPY,
-  SYSCALL_IN,
-  SSL_IN,
-  end
+  SSL_OUT,  //1
+  SYSCALL_OUT,  //2
+  TCP_OUT,  //3
+  IP_OUT, //4
+  QDISC_OUT,  //5
+  DEV_OUT,  //6
+  NIC_OUT,  //7
+  NIC_IN, //8
+  DEV_IN,   //9
+  IP_IN,  //10
+  TCP_IN, //11
+  USER_COPY,  //12
+  SYSCALL_IN, //13
+  SSL_IN, //14
+  end 
 };
 
 enum traffic_protocol_t {

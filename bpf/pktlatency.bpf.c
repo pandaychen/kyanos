@@ -385,23 +385,32 @@ static __always_inline int parse_skb(void* ctx, struct sk_buff *skb, bool sk_not
 	if (skb == NULL) {
 		return BPF_OK;
 	}
+	int ppppppid = bpf_get_current_pid_tgid() >> 32;
 	struct sock* sk = {0};
 	BPF_CORE_READ_INTO(&sk, skb, sk);
 	
 	u32 inital_seq = 0;
 	struct sock_key key = {0};
 	if (sk) {
+		// 来自sk_buff的struct sock		*sk 字段
+		// 准备好的场景
+		// 未准备好的场景
 		struct sock_common sk_cm  = {0};
 		BPF_CORE_READ_INTO(&sk_cm, sk, __sk_common);
+		bpf_printk("parse_skb sk ok: pid=%d,step=%d",ppppppid,step);
 		if (sk_cm.skc_addrpair && !sk_not_ready) {
 			parse_sock_key(skb, &key);
+			bpf_printk("parse_skb parse_sock_key ok: sport=%d,dport=%d,step=%d",key.sport,key.dport,/*key.dport*/step);
 			int  *found = {0};
 			found = bpf_map_lookup_elem(&sock_xmit_map, &key);
 			if (found == NULL) { 
 				return 0;
 			}
 			bpf_probe_read_kernel(&inital_seq, sizeof(inital_seq), found);
+			bpf_printk("parse_skb found seq ok: sport=%d,dport=%d,inital_seq=%d,step=%d",key.sport,key.dport,inital_seq,step);
 		} 	
+	}else{
+		bpf_printk("parse_skb struct sk not ready: pid=%d,step=%d",ppppppid,step);
 	}
 
 	u16 network_header = 0;
@@ -441,20 +450,21 @@ static __always_inline int parse_skb(void* ctx, struct sk_buff *skb, bool sk_not
 			* For vxlan device, mac header may be inner mac, and the
 			* network header is outer, which make mac > network.
 			*/
-			 bpf_printk(" mac_header >= network_header: %s, ifindex: %d", _C(skb,dev)->name, _C(skb,dev,ifindex));//629
+			bpf_printk("isl2 ok mac_header >= network_header: %s, ifindex: %d", _C(skb,dev)->name, _C(skb,dev,ifindex));//629
 			l3 = data + network_header;
 			l3_proto = ETH_P_IP;
 			goto __l3;
 		}
+		bpf_printk("isl2 true network_header=%d, mac_header=%d",network_header, mac_header);
 		goto __l2;
 	} else {
 		u16 _protocol = 0;
 		BPF_CORE_READ_INTO(&_protocol, skb, protocol);
 		l3_proto = bpf_ntohs(_protocol);
-		 bpf_printk("%s, l3_proto: %x","parse_skb", l3_proto);
+		 bpf_printk("isl2 false %s, l3_proto: %x","parse_skb", l3_proto);
 		 bpf_printk("devname2: %s", _C(skb,dev)->name);
 		if (l3_proto == ETH_P_IP || l3_proto == ETH_P_IPV6) {
-			 bpf_printk("%s, is_ip: %d", "parse_skb", 1);
+			bpf_printk("%s, is_ip: %d", "parse_skb", 1);
 			l3 = data + network_header;
 			goto __l3;
 		}
@@ -482,6 +492,7 @@ static __always_inline int parse_skb(void* ctx, struct sk_buff *skb, bool sk_not
 			u8 proto_l4 = 0;
 			if (l3_proto == ETH_P_IP)
 			{
+				bpf_printk("parse_skb l3_proto=ETH_P_IP sport=%d,dport=%d,step=%d",key.sport,key.dport,step);
 				u16 tot_len16 = 0;
 				BPF_CORE_READ_INTO(&tot_len16, ipv4, tot_len);
 				u32 len  = bpf_ntohs(tot_len16);
@@ -511,6 +522,7 @@ static __always_inline int parse_skb(void* ctx, struct sk_buff *skb, bool sk_not
 			struct tcphdr *tcp = l4;
 			if (proto_l4 == IPPROTO_TCP) {
 				if (!inital_seq) {
+					bpf_printk("parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=%d,dport=%d,step=%d",key.sport,key.dport,step);
 					// 在这里补充sk
 					if (l3_proto == ETH_P_IP) {
 						parse_sock_key_from_ipv4_tcp_hdr(&key, ipv4, tcp);
@@ -547,7 +559,9 @@ static __always_inline int parse_skb(void* ctx, struct sk_buff *skb, bool sk_not
 					} else {
 						bpf_probe_read_kernel(&inital_seq, sizeof(inital_seq), found);
 					}
-				} 
+				}else{
+					bpf_printk("parse_skb l4_proto=IPPROTO_TCP init_seq ok,sport=%d,dport=%d,step=%d",key.sport,key.dport,step);
+				}
 				struct parse_kern_evt_body body = {0};
 				body.ctx = ctx;
 				body.inital_seq = inital_seq;
