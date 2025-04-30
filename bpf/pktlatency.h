@@ -314,6 +314,7 @@ struct conn_evt_t {
 };
 
 
+//parse_kern_evt_body
 struct parse_kern_evt_body {
 	void* ctx;
 	u32 inital_seq;

@@ -1,0 +1,168 @@
+http server侧
+1.  `tracepoint/syscalls/sys_enter_accept`的输出顺序很奇怪，看起来是线程不同导致
+
+关联抓包`http1.pcap`
+
+```TEXT
+          <idle>-0       [003] ..s31 12622608.137235: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0      //RECV SYN
+          <idle>-0       [003] ..s31 12622608.137236: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [003] ..s31 12622608.137238: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [003] ..s31 12622608.137239: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s31 12622608.137240: bpf_trace_printk: len: 60, data_len: 0
+          <idle>-0       [003] ..s31 12622608.137241: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s31 12622608.137243: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s31 12622608.137244: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [003] ..s31 12622608.137245: bpf_trace_printk: protocol_l4:6,len:60
+          <idle>-0       [003] ..s31 12622608.137246: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [003] ..s31 12622608.137268: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0                //SYN
+          <idle>-0       [003] ..s31 12622608.137268: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [003] ..s31 12622608.137272: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [003] ..s31 12622608.137273: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s31 12622608.137273: bpf_trace_printk: len: 40, data_len: 0
+          <idle>-0       [003] ..s31 12622608.137274: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s31 12622608.137275: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s31 12622608.137276: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [003] ..s31 12622608.137276: bpf_trace_printk: protocol_l4:6,len:40
+          <idle>-0       [003] ..s31 12622608.137277: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+          <idle>-0       [003] b.s41 12622608.137301: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=0        //SEND SYN-ACK
+          <idle>-0       [003] b.s41 12622608.137302: bpf_trace_printk: parse_skb sk ok: pid=0,step=6
+          <idle>-0       [003] b.s41 12622608.137303: bpf_trace_printk: parse_skb parse_sock_key ok: sport=8000,dport=44710,step=6
+          <idle>-0       [003] ..s31 12622608.137515: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0    //RECV ACK
+          <idle>-0       [003] ..s31 12622608.137516: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [003] ..s31 12622608.137517: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [003] ..s31 12622608.137518: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s31 12622608.137519: bpf_trace_printk: len: 52, data_len: 0
+          <idle>-0       [003] ..s31 12622608.137519: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s31 12622608.137520: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s31 12622608.137521: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [003] ..s31 12622608.137522: bpf_trace_printk: protocol_l4:6,len:52
+          <idle>-0       [003] ..s31 12622608.137523: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [003] .Ns31 12622608.137551: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0    //RECV PSH-ACK(GET)
+          <idle>-0       [003] .Ns31 12622608.137552: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [003] .Ns31 12622608.137553: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [003] .Ns31 12622608.137554: bpf_trace_printk: is_l2:1, mac_header: 12, network_header:26
+          <idle>-0       [003] .Ns31 12622608.137555: bpf_trace_printk: len: 138, data_len: 0
+          <idle>-0       [003] .Ns31 12622608.137555: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] .Ns31 12622608.137556: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] .Ns31 12622608.137557: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [003] .Ns31 12622608.137558: bpf_trace_printk: protocol_l4:6,len:138                   //HTTP GET PACKAGE LENGTH
+          <idle>-0       [003] .Ns31 12622608.137559: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [003] .Ns41 12622608.137574: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0              //RECV PSH-ACK(GET)
+          <idle>-0       [003] .Ns41 12622608.137575: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [003] .Ns41 12622608.137578: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [003] .Ns41 12622608.137578: bpf_trace_printk: is_l2:1, mac_header: 12, network_header:26
+          <idle>-0       [003] .Ns41 12622608.137579: bpf_trace_printk: len: 118, data_len: 0
+          <idle>-0       [003] .Ns41 12622608.137579: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] .Ns41 12622608.137580: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] .Ns41 12622608.137581: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [003] .Ns41 12622608.137581: bpf_trace_printk: protocol_l4:6,len:118
+          <idle>-0       [003] .Ns41 12622608.137582: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+          <idle>-0       [003] bNs51 12622608.137590: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=0      //SEND PSH-ACK
+          <idle>-0       [003] bNs51 12622608.137591: bpf_trace_printk: parse_skb sk ok: pid=0,step=6
+          <idle>-0       [003] bNs51 12622608.137592: bpf_trace_printk: parse_skb parse_sock_key ok: sport=8000,dport=44710,step=6
+            http-3730430 [003] ...21 12622608.137620: bpf_trace_printk: tracepoint/syscalls/sys_exit_accept pid=3730430
+            http-3730430 [003] ...21 12622608.137625: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=3730430  //READ HTTP GET REQUEST
+            http-3730430 [003] ...21 12622608.137628: bpf_trace_printk: kprobe/security_socket_recvmsg pid=3730430
+            http-3730430 [003] ...21 12622608.137630: bpf_trace_printk: tracepoint/skb/skb_copy_datagram_iovec pid=3730430
+            http-3730430 [003] ...21 12622608.137633: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=3730430
+            http-3730430 [003] ...21 12622608.137645: bpf_trace_printk: recv initial_seq: 1982191915
+            http-3730430 [003] ...21 12622608.137659: bpf_trace_printk: read+bytes, tgid:3730430, fd: 4, bytes_count:86
+            http-3730430 [003] ...21 12622608.137662: bpf_trace_printk: tracepoint/syscalls/sys_enter_sendto pid=3730430    //SEND HTTP RESPONSE
+            http-3730430 [003] ...21 12622608.137665: bpf_trace_printk: kprobe/security_socket_sendmsg pid=3730430
+            http-3730430 [003] b..31 12622608.137675: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=3730430
+            http-3730430 [003] b..31 12622608.137677: bpf_trace_printk: parse_skb sk ok: pid=3730430,step=6
+            http-3730430 [003] b..31 12622608.137678: bpf_trace_printk: parse_skb parse_sock_key ok: sport=8000,dport=44710,step=6
+            http-3730430 [003] b..31 12622608.137679: bpf_trace_printk: parse_skb found seq ok: sport=8000,dport=44710,inital_seq=1982191915,step=6
+            http-3730430 [003] b..31 12622608.137681: bpf_trace_printk:  dev1: eth1, ifindex: 2
+            http-3730430 [003] b..31 12622608.137682: bpf_trace_printk: is_l2:1, mac_header: 190, network_header:204
+            http-3730430 [003] b..31 12622608.137682: bpf_trace_printk: len: 144, data_len: 0
+            http-3730430 [003] b..31 12622608.137683: bpf_trace_printk: test l3_proto: 800
+            http-3730430 [003] b..31 12622608.137684: bpf_trace_printk: parse_skb, skb_l4_check: 0
+            http-3730430 [003] b..31 12622608.137685: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=8000,dport=44710,step=6
+            http-3730430 [003] b..31 12622608.137686: bpf_trace_printk: protocol_l4:6,len:144
+            http-3730430 [003] b..31 12622608.137687: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq ok,sport=8000,dport=44710,step=6
+            http-3730430 [003] ...21 12622608.137704: bpf_trace_printk: tracepoint/syscalls/sys_exit_sendto pid=3730430
+            http-3730430 [003] ...21 12622608.137709: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=3730430
+            http-3730430 [003] b..31 12622608.137729: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=3730430
+            http-3730430 [003] b..31 12622608.137730: bpf_trace_printk: parse_skb sk ok: pid=3730430,step=6
+            http-3730430 [003] b..31 12622608.137731: bpf_trace_printk: parse_skb parse_sock_key ok: sport=8000,dport=44710,step=6
+            http-3730430 [003] b..31 12622608.137733: bpf_trace_printk: parse_skb found seq ok: sport=8000,dport=44710,inital_seq=1982191915,step=6
+            http-3730430 [003] b..31 12622608.137733: bpf_trace_printk:  dev1: eth1, ifindex: 2
+            http-3730430 [003] b..31 12622608.137734: bpf_trace_printk: is_l2:1, mac_header: 190, network_header:204
+            http-3730430 [003] b..31 12622608.137735: bpf_trace_printk: len: 66, data_len: 0
+            http-3730430 [003] b..31 12622608.137736: bpf_trace_printk: test l3_proto: 800
+            http-3730430 [003] b..31 12622608.137736: bpf_trace_printk: parse_skb, skb_l4_check: 0
+            http-3730430 [003] b..31 12622608.137737: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=8000,dport=44710,step=6
+            http-3730430 [003] b..31 12622608.137738: bpf_trace_printk: protocol_l4:6,len:66
+            http-3730430 [003] b..31 12622608.137739: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq ok,sport=8000,dport=44710,step=6
+            http-3730430 [003] ...21 12622608.137752: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=3730430
+            http-3730430 [003] ...21 12622608.137755: bpf_trace_printk: reported  close syscall event tgid:3730430 , reported: 1
+            http-3730430 [003] ...21 12622608.137758: bpf_trace_printk: tracepoint/syscalls/sys_enter_accept pid=3730430  //奇怪的顺序
+            http-3730430 [003] ...21 12622608.137765: bpf_trace_printk: kretprobe/sock_alloc
+          <idle>-0       [003] ..s31 12622608.137805: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0    //RECV ACK
+          <idle>-0       [003] ..s31 12622608.137806: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [003] ..s31 12622608.137807: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [003] ..s31 12622608.137808: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s31 12622608.137809: bpf_trace_printk: len: 52, data_len: 0
+          <idle>-0       [003] ..s31 12622608.137810: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s31 12622608.137811: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s31 12622608.137812: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [003] ..s31 12622608.137813: bpf_trace_printk: protocol_l4:6,len:52
+          <idle>-0       [003] ..s31 12622608.137815: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [003] ..s41 12622608.137822: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0
+          <idle>-0       [003] ..s41 12622608.137823: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [003] ..s41 12622608.137827: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [003] ..s41 12622608.137828: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s41 12622608.137829: bpf_trace_printk: len: 32, data_len: 0
+          <idle>-0       [003] ..s41 12622608.137829: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s41 12622608.137830: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s41 12622608.137831: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [003] ..s41 12622608.137832: bpf_trace_printk: protocol_l4:6,len:32
+          <idle>-0       [003] ..s41 12622608.137833: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+           <...>-1648655 [004] ...21 12622608.137863: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+          <idle>-0       [003] ..s31 12622608.137867: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0  //RECV FIN ACK
+          <idle>-0       [003] ..s31 12622608.137868: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [003] ..s31 12622608.137869: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [003] ..s31 12622608.137870: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s31 12622608.137870: bpf_trace_printk: len: 52, data_len: 0
+          <idle>-0       [003] ..s31 12622608.137871: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s31 12622608.137871: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s31 12622608.137872: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [003] ..s31 12622608.137872: bpf_trace_printk: protocol_l4:6,len:52
+          <idle>-0       [003] ..s31 12622608.137873: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [003] ..s41 12622608.137878: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0
+           <...>-1648655 [004] ...21 12622608.137878: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1648647
+          <idle>-0       [003] ..s41 12622608.137879: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [003] ..s41 12622608.137882: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [003] ..s41 12622608.137883: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [003] ..s41 12622608.137884: bpf_trace_printk: len: 32, data_len: 0
+          <idle>-0       [003] ..s41 12622608.137884: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] ..s41 12622608.137885: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] ..s41 12622608.137887: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [003] ..s41 12622608.137888: bpf_trace_printk: protocol_l4:6,len:32
+          <idle>-0       [003] ..s41 12622608.137889: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+           <...>-1648655 [004] ...21 12622608.137893: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.137896: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1648647
+          <idle>-0       [003] b.s51 12622608.137897: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=0
+          <idle>-0       [003] b.s51 12622608.137898: bpf_trace_printk: parse_skb sk ok: pid=0,step=6
+          <idle>-0       [003] b.s51 12622608.137899: bpf_trace_printk: parse_skb parse_sock_key ok: sport=8000,dport=44710,step=6
+          <idle>-0       [003] b.s51 12622608.137901: bpf_trace_printk: parse_skb found seq ok: sport=8000,dport=44710,inital_seq=1982191915,step=6
+          <idle>-0       [003] b.s51 12622608.137902: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [003] b.s51 12622608.137903: bpf_trace_printk: is_l2:1, mac_header: 190, network_header:204
+          <idle>-0       [003] b.s51 12622608.137904: bpf_trace_printk: len: 66, data_len: 0
+          <idle>-0       [003] b.s51 12622608.137904: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [003] b.s51 12622608.137905: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [003] b.s51 12622608.137906: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=8000,dport=44710,step=6
+          <idle>-0       [003] b.s51 12622608.137907: bpf_trace_printk: protocol_l4:6,len:66
+          <idle>-0       [003] b.s51 12622608.137909: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq ok,sport=8000,dport=44710,step=6
+          <idle>-0       [003] ..s4. 12622608.137918: bpf_trace_printk: raw_tp/tcp_destroy_sock pid=0
+           <...>-1648655 [004] ...21 12622608.137920: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.137928: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.137935: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.137937: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.138000: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.138008: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.138037: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.138044: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1648647
+           <...>-1648655 [004] ...21 12622608.138051: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1648647
+```

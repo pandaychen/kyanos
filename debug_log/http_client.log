@@ -1,0 +1,323 @@
+关联抓包`http2_send.pcap`
+
+```text
+          <...>-1686500 [002] ...21 12625800.542828: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542842: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542845: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.542847: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.542848: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.542863: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542890: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542893: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542911: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542913: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542914: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.542915: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.542917: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.542918: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.543618: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543621: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543657: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543659: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543670: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543671: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543673: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.543676: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.543676: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:4
+           <...>-1686500 [002] ...21 12625800.543698: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543700: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543744: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543746: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543798: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543799: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543801: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.543802: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.543803: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.543965: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543967: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543976: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543977: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.543979: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.543980: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.543981: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544000: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544001: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544001: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544013: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544014: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544014: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544029: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544030: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544030: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544045: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544046: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544047: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544058: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544059: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544060: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544072: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544073: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544074: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544085: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544086: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544086: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544095: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544096: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544097: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544104: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544105: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544106: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544116: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544117: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544118: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544129: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544130: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544131: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544153: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544154: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544154: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544166: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544167: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544167: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544178: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544179: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544179: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544223: bpf_trace_printk: kretprobe/sock_alloc
+           <...>-1686500 [002] ...21 12625800.544231: bpf_trace_printk: tracepoint/syscalls/sys_enter_connect pid=1686500
+           <...>-1686500 [002] ...21 12625800.544246: bpf_trace_printk: tracepoint/syscalls/sys_exit_connect pid=1686500
+           <...>-1686500 [002] ...21 12625800.544247: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544251: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544252: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544254: bpf_trace_printk: kretprobe/sock_alloc
+           <...>-1686500 [002] ...21 12625800.544257: bpf_trace_printk: tracepoint/syscalls/sys_enter_connect pid=1686500
+           <...>-1686500 [002] ...21 12625800.544261: bpf_trace_printk: tracepoint/syscalls/sys_exit_connect pid=1686500
+           <...>-1686500 [002] ...21 12625800.544262: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544264: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544264: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544278: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.544279: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.544289: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.544290: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.544293: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544294: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544295: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544307: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.544309: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686500
+           <...>-1686500 [002] ...21 12625800.544311: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544312: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+           <...>-1686500 [002] ...21 12625800.544313: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+           <...>-1686500 [002] ...21 12625800.544405: bpf_trace_printk: kretprobe/sock_alloc
+           <...>-1686500 [002] ...21 12625800.544407: bpf_trace_printk: kretprobe/sock_alloc
+           <...>-1686500 [002] ...21 12625800.544450: bpf_trace_printk: kretprobe/sock_alloc
+           <...>-1686500 [002] ...21 12625800.544466: bpf_trace_printk: tracepoint/syscalls/sys_enter_connect pid=1686500
+           <...>-1686500 [002] b..31 12625800.544521: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=1686500
+           <...>-1686500 [002] b..31 12625800.544522: bpf_trace_printk: parse_skb sk ok: pid=1686500,step=6
+           <...>-1686500 [002] b..31 12625800.544524: bpf_trace_printk: parse_skb parse_sock_key ok: sport=41626,dport=8000,step=6
+           <...>-1686500 [002] ...21 12625800.544536: bpf_trace_printk: tracepoint/syscalls/sys_exit_connect pid=1686500
+          <idle>-0       [006] ..s31 12625800.544768: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0  ### SYN/ACK
+          <idle>-0       [006] ..s31 12625800.544769: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [006] ..s31 12625800.544770: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [006] ..s31 12625800.544771: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [006] ..s31 12625800.544771: bpf_trace_printk: len: 60, data_len: 0
+          <idle>-0       [006] ..s31 12625800.544772: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [006] ..s31 12625800.544773: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [006] ..s31 12625800.544774: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [006] ..s31 12625800.544774: bpf_trace_printk: protocol_l4:6,len:60
+          <idle>-0       [006] ..s31 12625800.544775: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [006] ..s41 12625800.544794: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0
+          <idle>-0       [006] ..s41 12625800.544795: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [006] ..s41 12625800.544798: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [006] ..s41 12625800.544799: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [006] ..s41 12625800.544800: bpf_trace_printk: len: 40, data_len: 0
+          <idle>-0       [006] ..s41 12625800.544800: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [006] ..s41 12625800.544801: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [006] ..s41 12625800.544802: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [006] ..s41 12625800.544803: bpf_trace_printk: protocol_l4:6,len:40
+          <idle>-0       [006] ..s41 12625800.544804: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+          <idle>-0       [006] b.s51 12625800.544826: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=0
+          <idle>-0       [006] b.s51 12625800.544827: bpf_trace_printk: parse_skb sk ok: pid=0,step=6
+          <idle>-0       [006] b.s51 12625800.544828: bpf_trace_printk: parse_skb parse_sock_key ok: sport=41626,dport=8000,step=6
+            curl-1686500 [002] ...21 12625800.544850: bpf_trace_printk: tracepoint/syscalls/sys_enter_sendto pid=1686500
+            curl-1686500 [002] ...21 12625800.544853: bpf_trace_printk: kprobe/security_socket_sendmsg pid=1686500
+            curl-1686500 [002] b..31 12625800.544864: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=1686500
+            curl-1686500 [002] b..31 12625800.544864: bpf_trace_printk: parse_skb sk ok: pid=1686500,step=6
+            curl-1686500 [002] b..31 12625800.544865: bpf_trace_printk: parse_skb parse_sock_key ok: sport=41626,dport=8000,step=6
+            curl-1686500 [002] ...21 12625800.544871: bpf_trace_printk: tracepoint/syscalls/sys_exit_sendto pid=1686500
+          <idle>-0       [002] ..s31 12625800.544959: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0
+          <idle>-0       [002] ..s31 12625800.544960: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [002] ..s31 12625800.544961: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [002] ..s31 12625800.544962: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [002] ..s31 12625800.544963: bpf_trace_printk: len: 52, data_len: 0
+          <idle>-0       [002] ..s31 12625800.544964: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [002] ..s31 12625800.544964: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [002] ..s31 12625800.544965: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [002] ..s31 12625800.544966: bpf_trace_printk: protocol_l4:6,len:52
+          <idle>-0       [002] ..s31 12625800.544967: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [002] ..s41 12625800.544974: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0
+          <idle>-0       [002] ..s41 12625800.544976: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [002] ..s41 12625800.544979: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [002] ..s41 12625800.544980: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+          <idle>-0       [002] ..s41 12625800.544980: bpf_trace_printk: len: 32, data_len: 0
+          <idle>-0       [002] ..s41 12625800.544981: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [002] ..s41 12625800.544982: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [002] ..s41 12625800.544983: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [002] ..s41 12625800.544983: bpf_trace_printk: protocol_l4:6,len:32
+          <idle>-0       [002] ..s41 12625800.544984: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+          <idle>-0       [002] ..s31 12625800.545735: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=0
+          <idle>-0       [002] ..s31 12625800.545736: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=9
+          <idle>-0       [002] ..s31 12625800.545737: bpf_trace_printk:  dev1: eth1, ifindex: 2
+          <idle>-0       [002] ..s31 12625800.545738: bpf_trace_printk: is_l2:1, mac_header: 12, network_header:26
+          <idle>-0       [002] ..s31 12625800.545738: bpf_trace_printk: len: 207, data_len: 0
+          <idle>-0       [002] ..s31 12625800.545739: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [002] ..s31 12625800.545739: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [002] ..s31 12625800.545740: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+          <idle>-0       [002] ..s31 12625800.545741: bpf_trace_printk: protocol_l4:6,len:207
+          <idle>-0       [002] ..s31 12625800.545741: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+          <idle>-0       [002] ..s41 12625800.545755: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=0
+          <idle>-0       [002] ..s41 12625800.545755: bpf_trace_printk: parse_skb struct sk not ready: pid=0,step=11
+          <idle>-0       [002] ..s41 12625800.545757: bpf_trace_printk:  dev1: , ifindex: 0
+          <idle>-0       [002] ..s41 12625800.545758: bpf_trace_printk: is_l2:1, mac_header: 12, network_header:26
+          <idle>-0       [002] ..s41 12625800.545759: bpf_trace_printk: len: 187, data_len: 0
+          <idle>-0       [002] ..s41 12625800.545759: bpf_trace_printk: test l3_proto: 800
+          <idle>-0       [002] ..s41 12625800.545759: bpf_trace_printk: parse_skb, skb_l4_check: 0
+          <idle>-0       [002] ..s41 12625800.545760: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+          <idle>-0       [002] ..s41 12625800.545761: bpf_trace_printk: protocol_l4:6,len:187
+          <idle>-0       [002] ..s41 12625800.545761: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+          <idle>-0       [002] bNs51 12625800.545770: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=0
+          <idle>-0       [002] bNs51 12625800.545771: bpf_trace_printk: parse_skb sk ok: pid=0,step=6
+          <idle>-0       [002] bNs51 12625800.545772: bpf_trace_printk: parse_skb parse_sock_key ok: sport=41626,dport=8000,step=6
+            curl-1686500 [002] ...21 12625800.545784: bpf_trace_printk: tracepoint/syscalls/sys_enter_recvfrom pid=1686500
+            curl-1686500 [002] ...21 12625800.545786: bpf_trace_printk: kprobe/security_socket_recvmsg pid=1686500
+            curl-1686500 [002] ...21 12625800.545792: bpf_trace_printk: tracepoint/skb/skb_copy_datagram_iovec pid=1686500
+            curl-1686500 [002] ...21 12625800.545795: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=1686500
+            curl-1686500 [002] ...21 12625800.545795: bpf_trace_printk: parse_skb struct sk not ready: pid=1686500,step=11
+            curl-1686500 [002] ...21 12625800.545797: bpf_trace_printk:  dev1: , ifindex: 0
+            curl-1686500 [002] ...21 12625800.545798: bpf_trace_printk: is_l2:1, mac_header: 12, network_header:26
+            curl-1686500 [002] ...21 12625800.545798: bpf_trace_printk: len: 1060, data_len: 0
+            curl-1686500 [002] ...21 12625800.545798: bpf_trace_printk: test l3_proto: 800
+            curl-1686500 [002] ...21 12625800.545799: bpf_trace_printk: parse_skb, skb_l4_check: 0
+            curl-1686500 [002] ...21 12625800.545799: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+            curl-1686500 [002] ...21 12625800.545800: bpf_trace_printk: protocol_l4:6,len:1060
+            curl-1686500 [002] ...21 12625800.545800: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+            curl-1686500 [002] ...21 12625800.545803: bpf_trace_printk: tracepoint/syscalls/sys_exit_recvfrom pid=1686500
+            curl-1686500 [002] ...21 12625800.545816: bpf_trace_printk: tracepoint/syscalls/sys_enter_recvfrom pid=1686500
+            curl-1686500 [002] ...21 12625800.545817: bpf_trace_printk: kprobe/security_socket_recvmsg pid=1686500
+            curl-1686500 [002] ...21 12625800.545817: bpf_trace_printk: tracepoint/skb/skb_copy_datagram_iovec pid=1686500
+            curl-1686500 [002] b..31 12625800.545821: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=1686500
+            curl-1686500 [002] b..31 12625800.545822: bpf_trace_printk: parse_skb sk ok: pid=1686500,step=6
+            curl-1686500 [002] b..31 12625800.545823: bpf_trace_printk: parse_skb parse_sock_key ok: sport=41626,dport=8000,step=6
+            curl-1686500 [002] ...21 12625800.545825: bpf_trace_printk: tracepoint/syscalls/sys_exit_recvfrom pid=1686500
+            curl-1686500 [002] ...21 12625800.545831: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1686500
+            curl-1686500 [002] ...21 12625800.545853: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1686500
+            curl-1686500 [002] ...21 12625800.545855: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1686500
+            curl-1686500 [002] ...21 12625800.545857: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1686500
+            curl-1686500 [002] ...21 12625800.545863: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+            curl-1686500 [002] b..31 12625800.545868: bpf_trace_printk: kprobe/dev_hard_start_xmit pid=1686500
+            curl-1686500 [002] b..31 12625800.545868: bpf_trace_printk: parse_skb sk ok: pid=1686500,step=6
+            curl-1686500 [002] b..31 12625800.545869: bpf_trace_printk: parse_skb parse_sock_key ok: sport=41626,dport=8000,step=6
+            curl-1686500 [002] ...21 12625800.545876: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+            curl-1686500 [002] ...21 12625800.545877: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:5
+            curl-1686500 [002] ...21 12625800.545893: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+            curl-1686500 [002] ...21 12625800.545896: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+            curl-1686500 [002] ...21 12625800.545897: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:3
+            curl-1686500 [002] ...21 12625800.545899: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686500
+            curl-1686500 [002] ...21 12625800.545903: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686500
+            curl-1686500 [002] ...21 12625800.545904: bpf_trace_printk: close syscall no conn find,tgid:1686500,fd:4
+            curl-1686500 [002] ..s21 12625800.546018: bpf_trace_printk: tracepoint/net/netif_receive_skb pid=1686500
+            curl-1686500 [002] ..s21 12625800.546019: bpf_trace_printk: parse_skb struct sk not ready: pid=1686500,step=9
+            curl-1686500 [002] ..s21 12625800.546020: bpf_trace_printk:  dev1: eth1, ifindex: 2
+            curl-1686500 [002] ..s21 12625800.546021: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+            curl-1686500 [002] ..s21 12625800.546021: bpf_trace_printk: len: 52, data_len: 0
+            curl-1686500 [002] ..s21 12625800.546022: bpf_trace_printk: test l3_proto: 800
+            curl-1686500 [002] ..s21 12625800.546022: bpf_trace_printk: parse_skb, skb_l4_check: 0
+            curl-1686500 [002] ..s21 12625800.546023: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=9
+            curl-1686500 [002] ..s21 12625800.546023: bpf_trace_printk: protocol_l4:6,len:52
+            curl-1686500 [002] ..s21 12625800.546024: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=9
+            curl-1686500 [002] ..s31 12625800.546029: bpf_trace_printk: kprobe/tcp_v4_do_rcv pid=1686500
+            curl-1686500 [002] ..s31 12625800.546030: bpf_trace_printk: parse_skb struct sk not ready: pid=1686500,step=11
+            curl-1686500 [002] ..s31 12625800.546032: bpf_trace_printk:  dev1: , ifindex: 0
+            curl-1686500 [002] ..s31 12625800.546033: bpf_trace_printk: is_l2:1, mac_header: 64, network_header:78
+            curl-1686500 [002] ..s31 12625800.546033: bpf_trace_printk: len: 32, data_len: 0
+            curl-1686500 [002] ..s31 12625800.546034: bpf_trace_printk: test l3_proto: 800
+            curl-1686500 [002] ..s31 12625800.546034: bpf_trace_printk: parse_skb, skb_l4_check: 0
+            curl-1686500 [002] ..s31 12625800.546035: bpf_trace_printk: parse_skb l3_proto=ETH_P_IP sport=0,dport=0,step=11
+            curl-1686500 [002] ..s31 12625800.546036: bpf_trace_printk: protocol_l4:6,len:32
+            curl-1686500 [002] ..s31 12625800.546036: bpf_trace_printk: parse_skb l4_proto=IPPROTO_TCP init_seq zero,sport=0,dport=0,step=11
+            curl-1686500 [002] ..s3. 12625800.546042: bpf_trace_printk: raw_tp/tcp_destroy_sock pid=1686500
+           <...>-1685809 [007] ...21 12625800.546655: bpf_trace_printk: tracepoint/syscalls/sys_enter_write pid=1685809
+           <...>-1685809 [007] ...21 12625800.546666: bpf_trace_printk: tracepoint/syscalls/sys_exit_write pid=1685809
+            bash-1686501 [000] ...21 12625800.546880: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.546883: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.546884: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:255
+            bash-1686501 [000] ...21 12625800.547202: bpf_trace_printk: tracepoint/sched/sched_process_exec pid=1686501
+            bash-1686501 [000] ...21 12625800.547341: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547342: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547343: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547367: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547370: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547409: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547410: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547411: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547424: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547425: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547426: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547434: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547436: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547475: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547477: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547477: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547501: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547504: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547536: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547537: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547538: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547738: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547740: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547752: bpf_trace_printk: tracepoint/syscalls/sys_enter_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547753: bpf_trace_printk: tracepoint/syscalls/sys_exit_read pid=1686501
+            bash-1686501 [000] ...21 12625800.547754: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547756: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547756: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547771: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547772: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547773: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547783: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547784: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547785: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547798: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547799: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547800: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547811: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547812: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547812: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547823: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547823: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547824: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547834: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547835: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547835: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547845: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547846: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547847: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547855: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547856: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547857: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547865: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547866: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547867: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547876: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547877: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547878: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547891: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547892: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547893: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547914: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547915: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547916: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547928: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547929: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547930: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+            bash-1686501 [000] ...21 12625800.547940: bpf_trace_printk: tracepoint/syscalls/sys_enter_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547940: bpf_trace_printk: tracepoint/syscalls/sys_exit_close pid=1686501
+            bash-1686501 [000] ...21 12625800.547941: bpf_trace_printk: close syscall no conn find,tgid:1686501,fd:3
+```
